@@ -1,6 +1,5 @@
 package com.newbie.uier
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,28 +7,28 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MainViewModel : ViewModel(){
-    val videoName : MutableLiveData<BaseData<BvidBean>> = MutableLiveData()
+    val bvidData : MutableLiveData<BaseData<BvidBean>> = MutableLiveData()
+    val videoData : MutableLiveData<BaseData<VideoBean>> = MutableLiveData()
 
     fun requestBvid(bvid : String){
         viewModelScope.launch {
             val result : BaseData<BvidBean> = try {
-                BilibiliApiService.getApiService().getVideo(bvid)
+                BilibiliApiService.getApiService().getVideoList(bvid)
             }catch (e : Exception){
                 return@launch
             }
-            videoName.postValue(result)
+            bvidData.postValue(result)
         }
     }
 
-    fun requestCvid(aid : String){
+    fun requestVideo(cid : String, bvid : String){
         viewModelScope.launch {
-            val result = try {
-                BilibiliApiService.getApiService().getVideo(aid)
+            val result : BaseData<VideoBean> = try {
+                BilibiliApiService.getApiService().getVideo(cid, bvid)
             }catch (e : Exception){
+                return@launch
             }
-//            videoName.value = result.toString()
+            videoData.postValue(result)
         }
     }
-
-
 }

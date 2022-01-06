@@ -1,22 +1,24 @@
 package com.newbie.uier
 
-import androidx.databinding.Observable
-import okhttp3.OkHttp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface BilibiliApiService {
 
     @GET("x/web-interface/view")
-    suspend fun getVideo(
+    suspend fun getVideoList(
         @Query("bvid") bvid: String
     ): BaseData<BvidBean>
+
+    @GET("x/player/playurl")
+    suspend fun getVideo(
+        @Query("cid") cid: String,
+        @Query("bvid") bvid: String
+    ): BaseData<VideoBean>
 
     companion object{
         private const val BASE_URL = "https://api.bilibili.com/"
