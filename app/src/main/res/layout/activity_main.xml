@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <cn.jzvd.JzvdStd
+            android:id="@+id/As_VideoPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/As_ImageView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bilibili"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/As_VideoPlayer"
+            app:layout_constraintEnd_toEndOf="@id/As_VideoPlayer"
+            app:layout_constraintStart_toStartOf="@id/As_VideoPlayer"
+            app:layout_constraintTop_toTopOf="@id/As_VideoPlayer" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="12dp"
+            android:id="@+id/rv_course"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/As_VideoPlayer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
